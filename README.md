@@ -10,9 +10,9 @@
 | What | Why it matters |
 |------|----------------|
 | **Two-stage pipeline** (VLM → LLM) | Converts seed chart images into *executable* Python plotting scripts, then iteratively augments them for scale & diversity. |
-| **Huge synthetic corpus** | 200 K image-code pairs covering **22 chart types** and **9 plotting libraries**. |
+| **Huge synthetic corpus** | 222.5 K image-code pairs covering **27 chart types** and **11 plotting libraries**. |
 | **Benchmark for chart derendering** | 4 K-sample test set + GPT-4o judging protocol let you measure code fidelity, visual similarity and execution rate. |
-| **Library-agnostic** | Works with *matplotlib, seaborn, plotly, altair, bokeh, plotnine, hvplot, pandas plot,* and *pygal* out of the box. |
+| **Library-agnostic** | Works with *matplotlib, seaborn, plotly, altair, bokeh, plotnine, *pygal* out of the box. |
 
 ## 🗺️ Repository layout
 

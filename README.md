@@ -26,6 +26,7 @@ ChartGen/
 ├── chartgen/            
 │   ├── chart2code.py     # stage-1 script (image → code)
 │   ├── code_augment.py   # stage-2 script (code  → diversified code)
+│   └── extract_plot.py   # utils: extract code & render charts from raw model output
 ├── README.md
 ├── LICENSE
 └── requirements.txt      # pinned dependency versions

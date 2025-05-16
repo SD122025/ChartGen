@@ -7,7 +7,7 @@ ChartGen is a **two-stage, fully-automated pipeline** that
 2. **Augments** those scripts with a code-centric LLM (quantized Codestral-22B-v0.1), scaling a 13 K-image seed set into the **[ChartGen-200K dataset](https://huggingface.co/datasets/SD122025/ChartGen-200K)** spanning 27 chart types and 11 plotting libraries.  
 
 <p align="center">
-  <img src="assets/chartgen_pipeline.jpg" width="1200" alt="ChartGen pipeline">
+  <img src="figures/chartgen_pipeline.jpg" width="1200" alt="ChartGen pipeline">
 </p>
 
 ## ✨  Key Highlights

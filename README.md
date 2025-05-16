@@ -1,41 +1,57 @@
-# ChartGen
+# 📊 ChartGen  
+Official codebase for “ChartGen: Scaling Chart Understanding via Code-Guided Synthetic Chart Generation”
 
-> Scalable **chart-to-code** data generation & benchmarking, built on the NeurIPS 2025 paper “ChartGen: Scaling Chart Understanding Via Code-Guided Synthetic Chart Generation”.
+ChartGen is a **two-stage, fully-automated pipeline** that  
+
+1. **Derenders** real-world chart images into executable Python plotting scripts with a vision-language model (Phi-3.5-Vision-Instruct).  
+2. **Augments** those scripts with a code-centric LLM (quantized Codestral-22B-v0.1), scaling a 13 K-image seed set into the **[ChartGen-200K dataset](https://huggingface.co/datasets/SD122025/ChartGen-200K)** spanning 27 chart types and 11 plotting libraries.  
 
 <p align="center">
   <img src="assets/chartgen_pipeline.jpg" width="1200" alt="ChartGen pipeline">
 </p>
 
-## ✨ Key features
-| What | Why it matters |
-|------|----------------|
-| **Two-stage pipeline** (VLM → LLM) | Converts seed chart images into *executable* Python plotting scripts, then iteratively augments them for scale & diversity. |
-| **Huge synthetic corpus** | 222.5 K image-code pairs covering **27 chart types** and **11 plotting libraries**. |
-| **Benchmark for chart derendering** | 4 K-sample test set + GPT-4o judging protocol let you measure code fidelity, visual similarity and execution rate. |
-| **Library-agnostic** | Works with *matplotlib, seaborn, plotly, altair, bokeh, plotnine, *pygal* out of the box. |
+## ✨  Key Highlights
+| Stage | Model | What it does | Output |
+|-------|-------|--------------|--------|
+| **Derender** | [`microsoft/Phi-3.5-vision-instruct`](https://huggingface.co/microsoft/phi-3.5-vision-instruct) | Converts each seed chart image into plotting code enclosed in triple-backtick fences | `train_generated_codes/*.md` |
+| **Augment** | [`mistralai/Codestral-22B-v0.1`](https://huggingface.co/mistralai/Codestral-22B-v0.1) | Produces *K* stylistically diverse code variants (new chart type, library, color, data) | `train_augmented_codes/*.md` |
 
-## 🗺️ Repository layout
+Running both stages on 13 K seed charts yields the **222.5 K image-code pairs** contained in the public **[ChartGen-200K dataset](https://huggingface.co/datasets/SD122025/ChartGen-200K)**. 
+---
 
+## 📂  Repository Layout
 <pre>
 
-chartgen/
-├── chartgen/             # Core Python library
-│   ├── pipeline.py       # Two-stage generation pipeline
-│   ├── prompts.py        # Prompt templates for VLM & LLM
-│   ├── evaluate.py       # GPT-4o-based evaluation scripts
-│   └── …                 # (other helpers)
-├── data/
-│   └── chartnet/         # (Optional) pre-generated dataset download script
-├── examples/             # End-to-end notebooks & minimal demos
+ChartGen/
+├── chartgen/            
+│   ├── chart2code.py     # stage-1 script (image → code)
+│   ├── code_augment.py   # stage-2 script (code  → diversified code)
+├── requirements.txt      # pinned dependency versions
+├── LICENSE
 └── README.md
 
 </pre>
 
-<p align="center">
-  <img src="assets/data_generation_process.jpg" width="640" alt="Chart redrawing & augmentation process">
-</p>
+## ⚙️ Setup
+```bash
+# 1 Clone the repo
+git clone https://github.com/<your-handle>/ChartGen.git
+cd ChartGen
 
+# 2 Create and activate an isolated environment
+python -m venv .venv && source .venv/bin/activate     # macOS / Linux
+# .\.venv\Scripts\Activate.ps1                        # Windows PowerShell
 
+# 3 Install *GPU* or *CPU* wheels for PyTorch first
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118   # CUDA 11.8
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu   # CPU-only
+
+# 4 Install the remaining Python packages
+pip install -r requirements.txt
+
+# 5 Authenticate with Hugging Face (needed for Codestral)
+huggingface-cli login     # or: export HF_TOKEN=hf_your_token
+```
 
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]

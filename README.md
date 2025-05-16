@@ -3,7 +3,7 @@ Official codebase for “ChartGen: Scaling Chart Understanding via Code-Guided S
 
 ChartGen is a **two-stage, fully-automated pipeline** that  
 
-1. **Derenders** real-world chart images into executable Python plotting scripts with a vision-language model (Phi-3.5-Vision-Instruct).  
+1. **Reconstructs** real-world chart images into executable Python plotting scripts with a vision-language model (Phi-3.5-Vision-Instruct).  
 2. **Augments** those scripts with a code-centric LLM (quantized Codestral-22B-v0.1), scaling a 13 K-image seed set into the **[ChartGen-200K dataset](https://huggingface.co/datasets/SD122025/ChartGen-200K)** spanning 27 chart types and 11 plotting libraries.  
 
 <p align="center">
@@ -13,7 +13,7 @@ ChartGen is a **two-stage, fully-automated pipeline** that
 ## ✨  Key Highlights
 | Stage | Model | What it does | Output |
 |-------|-------|--------------|--------|
-| **Derender** | [`microsoft/Phi-3.5-vision-instruct`](https://huggingface.co/microsoft/phi-3.5-vision-instruct) | Converts each seed chart image into plotting code enclosed in triple-backtick fences | `train_generated_codes/*.md` |
+| **Reconstruct** | [`microsoft/Phi-3.5-vision-instruct`](https://huggingface.co/microsoft/phi-3.5-vision-instruct) | Converts each seed chart image into plotting code enclosed in triple-backtick fences | `train_generated_codes/*.md` |
 | **Augment** | [`mistralai/Codestral-22B-v0.1`](https://huggingface.co/mistralai/Codestral-22B-v0.1) | Produces *K* stylistically diverse code variants (new chart type, library, color, data) | `train_augmented_codes/*.md` |
 
 Running both stages on 13 K seed charts yields the **222.5 K image-code pairs** contained in the public **[ChartGen-200K dataset](https://huggingface.co/datasets/SD122025/ChartGen-200K)**. 

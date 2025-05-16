@@ -1,0 +1,12 @@
+# Core
+transformers==4.41.0
+datasets==2.18.0
+huggingface-hub==0.23.0
+tqdm==4.66.4
+rich==13.7.1
+pillow==10.3.0
+
+# Model helpers
+bitsandbytes==0.43.0        # 4-bit quantization for Codestral
+mistral-common==0.3.0
+accelerate==0.27.2          # optional, speeds up multi-GPU / bf16 loading

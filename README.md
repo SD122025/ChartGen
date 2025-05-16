@@ -26,9 +26,9 @@ ChartGen/
 ├── chartgen/            
 │   ├── chart2code.py     # stage-1 script (image → code)
 │   ├── code_augment.py   # stage-2 script (code  → diversified code)
-├── requirements.txt      # pinned dependency versions
+├── README.md
 ├── LICENSE
-└── README.md
+└── requirements.txt      # pinned dependency versions
 
 </pre>
 
